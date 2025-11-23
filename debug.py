@@ -1,35 +1,52 @@
 from coffee_shop.customer import Customer
 from coffee_shop.coffee import Coffee
 from coffee_shop.order import Order
+import ipdb
 
 if __name__ == '__main__':
-    c1 = Coffee(name="Mocha")
-    c2 = Coffee(name="Latte")
-    c3 = Coffee(name="Espresso")
+    print("Starting debug script...")
 
-    cust1 = Customer(name="Saron")
-    cust2 = Customer(name="John")
+    # 1. Create instances
+    cappuccino = Coffee("Cappuccino")
+    latte = Coffee("Latte")
+    espresso = Coffee("Espresso")
+    cold_brew = Coffee("Cold Brew") # A coffee that won't be ordered
 
-    order1 = cust1.create_order(c1, 4.50)
-    order2 = cust1.create_order(c2, 5.00)
-    order3 = cust2.create_order(c1, 4.50)
-    order4 = cust2.create_order(c3, 3.00)
-    order5 = cust2.create_order(c1, 4.75)
+    ken = Customer(name="Ken")
+    allan = Customer(name="Allan")
 
-    print("--- Testing Methods ---")
+    # 2. Create orders to build relationships
+    # Ken loves Cappuccinos
+    ken.create_order(cappuccino, 4.75)
+    ken.create_order(cappuccino, 4.75)
+    ken.create_order(latte, 5.0)
 
-    # Test Customer methods
-    print(f"{cust1.name}'s orders: {[o.coffee.name for o in cust1.orders()]}")
-    print(f"{cust1.name}'s unique coffees: {[c.name for c in cust1.coffees()]}")
+    # Allan is exploring the menu
+    allan.create_order(latte, 5.25)
+    allan.create_order(cappuccino, 4.5)
 
-    # Test Coffee methods
-    print(f"Number of Mocha orders: {c1.num_orders()}")
-    print(f"Average price of a Mocha: ${c1.average_price():.2f}")
-    print(f"Customers who ordered Mocha: {[c.name for c in c1.customers()]}")
+    # 3. Test your methods and print the results
+    print("\n--- Testing Customer Methods ---")
+    print(f"Number of orders for {ken.name}: {len(ken.orders())}")
+    print(f"Coffees {ken.name} has tried: {[c.name for c in ken.coffees()]}")
 
-    # Test the class method
-    most_dedicated = Customer.most_aficionado(c1)
-    if most_dedicated:
-        print(f"The biggest Mocha aficionado is: {most_dedicated.name}")
+    print("\n--- Testing Coffee Methods ---")
+    print(f"Number of Cappuccino orders: {cappuccino.num_orders()}")
+    print(f"Customers who ordered Cappuccino: {[c.name for c in cappuccino.customers()]}")
+    print(f"Average price for a Latte: ${latte.average_price():.2f}")
+
+    # 4. Test edge cases
+    print("\n--- Testing Edge Cases ---")
+    print(f"Number of orders for Cold Brew: {cold_brew.num_orders()}")
+    print(f"Average price for Cold Brew: {cold_brew.average_price()}")
+
+    # 5. Test the class method
+    print("\n--- Testing Class Methods ---")
+    top_cappuccino_fan = Customer.most_aficionado(cappuccino)
+    if top_cappuccino_fan:
+        print(f"The biggest Cappuccino aficionado is: {top_cappuccino_fan.name}")
+
+    # Use ipdb to inspect your objects and test interactively
+    ipdb.set_trace()
 
     print("\nDebug script finished.")
