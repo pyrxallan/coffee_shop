@@ -22,3 +22,14 @@ class Coffee:
     def customers(self):
         """Returns a unique list of customers who have ordered this coffee."""
         return list(set(order.customer for order in self.orders()))
+
+    def num_orders(self):
+        """Returns the total number of times a coffee has been ordered."""
+        return len(self.orders())
+
+    def average_price(self):
+        """Returns the average price for a coffee based on its orders."""
+        if not self.orders():
+            return 0
+        total_price = sum(order.price for order in self.orders())
+        return total_price / len(self.orders())

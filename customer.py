@@ -1,7 +1,4 @@
 class Customer:
-    # Assuming Order class exists and has an 'all' list tracking all instances
-    from .order import Order
-
     def __init__(self, name):
         self.name = name
 
@@ -17,9 +14,30 @@ class Customer:
 
     def orders(self):
         """Returns a list of all orders for this customer."""
-        return [order for order in self.Order.all if order.customer == self]
+        from .order import Order
+        return [order for order in Order.all if order.customer == self]
 
     def coffees(self):
         """Returns a unique list of all coffees this customer has ordered."""
-        customer_orders = self.orders()
-        return list(set(order.coffee for order in customer_orders))
+        return list(set(order.coffee for order in self.orders()))
+
+    def create_order(self, coffee, price):
+        """Creates and returns a new Order instance for this customer."""
+        from .order import Order
+        return Order(self, coffee, price)
+
+    @classmethod
+    def most_aficionado(cls, coffee):
+        """
+        Receives a coffee object and returns the Customer who has spent the most on that coffee.
+        Returns None if there are no customers for the coffee.
+        """
+        coffee_orders = coffee.orders()
+        if not coffee_orders:
+            return None
+
+        customer_spending = {}
+        for order in coffee_orders:
+            customer_spending[order.customer] = customer_spending.get(order.customer, 0) + order.price
+
+        return max(customer_spending, key=customer_spending.get)
