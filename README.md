@@ -97,10 +97,6 @@ This will also start an `ipdb` session, allowing you to interactively inspect th
 └── README.md
 ```
 
-## Contributing
-
-Contributions are welcome! Please feel free to open an issue or submit a pull request.
-
 ## License
 
 This project is licensed under the MIT License.
