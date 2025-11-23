@@ -1,6 +1,6 @@
-from customer import Customer
-from coffee import Coffee
-from order import Order
+from coffee_shop.customer import Customer
+from coffee_shop.coffee import Coffee
+from coffee_shop.order import Order
 import ipdb
 
 if __name__ == '__main__':
@@ -47,6 +47,6 @@ if __name__ == '__main__':
         print(f"The biggest Cappuccino aficionado is: {top_cappuccino_fan.name}")
 
     # Use ipdb to inspect your objects and test interactively
-    # ipdb.set_trace()
+    ipdb.set_trace()
 
     print("\nDebug script finished.")

@@ -16,7 +16,7 @@ class Coffee:
 
     def orders(self):
         """Returns a list of all orders for this coffee."""
-        from .order import Order
+        from order import Order
         return [order for order in Order.all if order.coffee == self]
 
     def customers(self):

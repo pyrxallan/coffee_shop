@@ -14,7 +14,7 @@ class Customer:
 
     def orders(self):
         """Returns a list of all orders for this customer."""
-        from .order import Order
+        from order import Order
         return [order for order in Order.all if order.customer == self]
 
     def coffees(self):
@@ -23,7 +23,7 @@ class Customer:
 
     def create_order(self, coffee, price):
         """Creates and returns a new Order instance for this customer."""
-        from .order import Order
+        from order import Order
         return Order(self, coffee, price)
 
     @classmethod
