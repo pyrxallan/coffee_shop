@@ -3,7 +3,6 @@ from coffee_shop.coffee import Coffee
 from coffee_shop.order import Order
 
 if __name__ == '__main__':
-    # Create some instances of your classes
     c1 = Coffee(name="Mocha")
     c2 = Coffee(name="Latte")
     c3 = Coffee(name="Espresso")
@@ -11,12 +10,11 @@ if __name__ == '__main__':
     cust1 = Customer(name="Saron")
     cust2 = Customer(name="John")
 
-    # Create orders using your methods
     order1 = cust1.create_order(c1, 4.50)
     order2 = cust1.create_order(c2, 5.00)
     order3 = cust2.create_order(c1, 4.50)
     order4 = cust2.create_order(c3, 3.00)
-    order5 = cust2.create_order(c1, 4.75) # John orders another Mocha
+    order5 = cust2.create_order(c1, 4.75)
 
     print("--- Testing Methods ---")
 
@@ -34,6 +32,4 @@ if __name__ == '__main__':
     if most_dedicated:
         print(f"The biggest Mocha aficionado is: {most_dedicated.name}")
 
-    # You can add a breakpoint here to debug interactively
-    # import ipdb; ipdb.set_trace()
     print("\nDebug script finished.")
