@@ -45,7 +45,6 @@ if __name__ == '__main__':
     if top_cappuccino_fan:
         print(f"The biggest Cappuccino aficionado is: {top_cappuccino_fan.name}")
 
-    # Use ipdb to inspect your objects and test interactively
-    # import ipdb; ipdb.set_trace()
+    import ipdb; ipdb.set_trace()
 
     print("\nDebug script finished.")
